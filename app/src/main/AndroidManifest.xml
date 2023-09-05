@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:usesCleartextTraffic="true"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@drawable/logo"
+        tools:replace="android:allowBackup"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/logo"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Nelayanku"
+        tools:targetApi="31">
+        <activity
+            android:name=".act.user.MidtransActivity"
+            android:exported="false" />
+        <activity
+            android:name=".act.user.TarikActivity"
+            android:exported="false" />
+        <activity
+            android:name=".act.user.UploadActivity"
+            android:exported="false" />
+        <activity
+            android:name=".act.user.TopupActivity"
+            android:exported="false" />
+        <activity
+            android:name=".act.seller.LayananActivity"
+            android:exported="false" />
+        <activity
+            android:name=".act.seller.InfoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".act.user.PembayaranActivity"
+            android:exported="false" />
+        <activity
+            android:name=".act.admin.BuktiActivity"
+            android:exported="false" />
+        <activity
+            android:name=".act.admin.InfoEditActivity"
+            android:exported="false" />
+        <activity
+            android:name=".act.admin.AddActivity"
+            android:exported="false" />
+        <activity
+            android:name=".act.seller.TarikActivity"
+            android:exported="false" />
+        <activity
+            android:name=".act.seller.ProductEditActivity"
+            android:exported="false" />
+        <activity
+            android:name=".act.seller.AddActivity"
+            android:exported="false" />
+        <activity
+            android:name=".account.SkActivity"
+            android:exported="false" />
+        <activity
+            android:name=".tools.PickerActivity"
+            android:exported="false" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCdvF34lxFPrqwALmNFuHxn0o_S_dM9FTI" />
+
+        <activity
+            android:name=".MapsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".account.ForgotActivity"
+            android:exported="false" />
+        <activity
+            android:name=".account.RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".account.SellerRegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".redirect.SellerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".redirect.UserActivity"
+            android:exported="false" />
+        <activity
+            android:name=".redirect.AdminActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

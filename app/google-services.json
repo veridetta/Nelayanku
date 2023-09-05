@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "970802298182",
+    "project_id": "nelayanku-35238",
+    "storage_bucket": "nelayanku-35238.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:970802298182:android:a1689ac95568d515523947",
+        "android_client_info": {
+          "package_name": "com.nelayanku.apps"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "970802298182-4vs0ta6elsn4j1fbod4231r8m6htqati.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCXhsVxZLF-07zAR4D_8s3ufyjW9Lszouk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "970802298182-4vs0ta6elsn4j1fbod4231r8m6htqati.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

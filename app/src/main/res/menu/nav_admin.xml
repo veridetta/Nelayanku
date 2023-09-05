@@ -1,0 +1,27 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_home"
+        android:icon="@drawable/ic_home"
+        android:tint="@drawable/icon_color_selector"
+        android:title="Home" />
+    <item
+        android:id="@+id/menu_tarik"
+        android:icon="@drawable/ic_money"
+        android:tint="@drawable/icon_color_selector"
+        android:title="Tarik" />
+    <item
+        android:id="@+id/menu_topup"
+        android:icon="@drawable/ic_topup"
+        android:tint="@drawable/icon_color_selector"
+        android:title="Topup" />
+    <item
+        android:id="@+id/menu_info"
+        android:icon="@drawable/ic_info"
+        android:tint="@drawable/icon_color_selector"
+        android:title="Info" />
+    <item
+        android:id="@+id/menu_settings"
+        android:icon="@drawable/ic_settings"
+        android:tint="@drawable/icon_color_selector"
+        android:title="Settings" />
+</menu>

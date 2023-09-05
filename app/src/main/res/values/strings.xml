@@ -1,0 +1,66 @@
+<resources>
+    <string name="app_name">Nelayanku</string>
+    <string name="default_web_client_id">970802298182-q4uebg06i5ctd12tsi2kddqu2n89o4mi.apps.googleusercontent.com</string>
+    <string name="google_maps_key">AIzaSyCdvF34lxFPrqwALmNFuHxn0o_S_dM9FTI</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="setuju">Dengan meneruskan registrasi sebagai mitra atau penjual di aplikasi “Nelayanku”, Anda dianggap telah menyetujui seluruh syarat dan ketentuan yang tercantum di atas. Pastikan untuk membaca dan memahami dengan baik sebelum melanjutkan menggunakan aplikasi kami sebagai mitra. Jika Anda memiliki pertanyaan atau kebingungan, jangan ragu untuk menghubungi kami.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="delete">Delete</string>
+    <string name="tambah_produk">Tambah Produk</string>
+    <string name="ganti_gambar">* Klik untuk mengganti gambar</string>
+    <string name="choose_month">Pilih Bulan</string>
+    <string name="choose_year">Pilih Tahun</string>
+    <string-array name="pesan_status">
+        <item>Menunggu Pembayaran</item>
+        <item>Menunggu Konfirmasi</item>
+        <item>Diproses</item>
+        <item>Dikirim</item>
+        <item>Selesai</item>
+    </string-array>
+    <string-array name="pesan_status_seller">
+        <item>Menunggu Konfirmasi</item>
+        <item>Diproses</item>
+        <item>Dikirim</item>
+    </string-array>
+    <string-array name="tarik_status">
+        <item>Menunggu Konfirmasi</item>
+        <item>Diproses</item>
+        <item>Selesai</item>
+        <item>Ditolak</item>
+    </string-array>
+    <string-array name="topup_status">
+        <item>Menunggu Konfirmasi</item>
+        <item>Diproses</item>
+        <item>Selesai</item>
+        <item>Ditolak</item>
+    </string-array>
+    <string-array name="months_array">
+        <item>Januari</item>
+        <item>Februari</item>
+        <item>Maret</item>
+        <item>April</item>
+        <item>Mei</item>
+        <item>Juni</item>
+        <item>Juli</item>
+        <item>Agustus</item>
+        <item>September</item>
+        <item>Oktober</item>
+        <item>November</item>
+        <item>Desember</item>
+    </string-array>
+    <string-array name="years_array">
+        <item>2019</item>
+        <item>2020</item>
+        <item>2021</item>
+        <item>2022</item>
+        <item>2023</item>
+        <item>2024</item>
+        <item>2025</item>
+        <item>2026</item>
+        <item>2027</item>
+        <item>2028</item>
+        <item>2029</item>
+        <item>2030</item>
+    </string-array>
+</resources>

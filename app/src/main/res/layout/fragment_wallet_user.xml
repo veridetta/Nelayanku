@@ -1,0 +1,100 @@
+<!-- res/layout/fragment_wallet.xml -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/content">
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:orientation="vertical"
+                android:padding="@dimen/_12sdp">
+                <TextView
+                    android:id="@+id/textViewSaldo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Saldo Rp. 0"
+                    android:textColor="@color/white"
+                    android:gravity="center_horizontal"
+                    android:layout_marginTop="16dp"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/_18sdp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_horizontal"
+                    android:layout_marginTop="16dp">
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnTarik"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_22sdp"
+                        android:drawableStart="@drawable/ic_wallet"
+                        android:drawableTint="@color/white"
+                        android:paddingLeft="@dimen/_8sdp"
+                        android:paddingRight="@dimen/_8sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:textColor="@color/white"
+                        android:gravity="center_vertical"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/rounded_button_background"
+                        android:text="Tarik dana"/>
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnTopup"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_22sdp"
+                        android:drawableStart="@drawable/ic_wallet"
+                        android:drawableTint="@color/white"
+                        android:paddingLeft="@dimen/_8sdp"
+                        android:paddingRight="@dimen/_8sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginLeft="@dimen/_8sdp"
+                        android:textColor="@color/white"
+                        android:gravity="center_vertical"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@drawable/rounded_button_background"
+                        android:backgroundTint="@color/green"
+                        android:text="Topup dana"/>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/semi"
+                android:orientation="horizontal"
+                android:padding="@dimen/_12sdp">
+                <Spinner
+                    android:id="@+id/spinnerBulan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:prompt="@string/choose_month" />
+                <!-- Filter Tahun -->
+                <Spinner
+                    android:id="@+id/spinnerTahun"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:prompt="@string/choose_year" />
+            </LinearLayout>
+            <include layout="@layout/shimmer_item_wallet"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewTransaksi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/spinnerTahun"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:clipToPadding="false"
+                android:paddingBottom="16dp"
+                android:nestedScrollingEnabled="false"
+                android:scrollbars="vertical" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</RelativeLayout>

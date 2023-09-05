@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/mainContent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:layout_alignParentBottom="true">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="bottom">
+                    <!-- Card view with white background -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="@dimen/_380sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:padding="@dimen/_8sdp"
+                        android:background="@drawable/top_rounded_bg">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="16dp">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Settings"
+                                android:textSize="@dimen/_26sdp"
+                                android:textStyle="bold" />
+                            <!-- label untuk Biaya layanan penjual-->
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Biaya Layanan Penjual"
+                                android:paddingLeft="@dimen/_4sdp"
+                                android:layout_marginTop="@dimen/_15sdp"
+                                android:textSize="@dimen/_13sdp"/>
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_marginTop="@dimen/_1sdp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/rounded_button_background"
+                                    android:backgroundTint="@color/semi"
+                                    android:gravity="center_vertical"
+                                    android:orientation="horizontal">
+                                    <ImageView
+                                        android:layout_width="@dimen/_40sdp"
+                                        android:layout_height="@dimen/_40sdp"
+                                        android:src="@drawable/ic_money"
+                                        app:tint="@color/white"
+                                        android:layout_gravity="center_vertical"
+                                        android:background="@drawable/background_rounded_blue"
+                                        android:layout_marginRight="@dimen/_5sdp"/>
+
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/editTextLPenjual"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:hint="Biaya Layanan Penjual"
+                                        android:background="@null" />
+                                </LinearLayout>
+                            </LinearLayout>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Biaya Layanan Pembeli"
+                                android:paddingLeft="@dimen/_4sdp"
+                                android:layout_marginTop="@dimen/_15sdp"
+                                android:textSize="@dimen/_13sdp"/>
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_marginTop="@dimen/_1sdp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/rounded_button_background"
+                                    android:backgroundTint="@color/semi"
+                                    android:gravity="center_vertical"
+                                    android:orientation="horizontal">
+
+                                    <ImageView
+                                        android:layout_width="@dimen/_40sdp"
+                                        android:layout_height="@dimen/_40sdp"
+                                        android:src="@drawable/ic_money"
+                                        android:layout_gravity="center_vertical"
+                                        app:tint="@color/white"
+                                        android:background="@drawable/background_rounded_blue"
+                                        android:layout_marginRight="@dimen/_5sdp"/>
+
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/editTextLPembeli"
+                                        android:hint="Biaya Layanan Pembeli"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:background="@null" />
+                                </LinearLayout>
+                            </LinearLayout>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Radius Max (meter)"
+                                android:paddingLeft="@dimen/_4sdp"
+                                android:layout_marginTop="@dimen/_15sdp"
+                                android:textSize="@dimen/_13sdp"/>
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_marginTop="@dimen/_1sdp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/rounded_button_background"
+                                    android:backgroundTint="@color/semi"
+                                    android:gravity="center_vertical"
+                                    android:orientation="horizontal">
+
+                                    <ImageView
+                                        android:layout_width="@dimen/_40sdp"
+                                        android:layout_height="@dimen/_40sdp"
+                                        android:src="@drawable/ic_radius"
+                                        app:tint="@color/white"
+                                        android:layout_gravity="center_vertical"
+                                        android:background="@drawable/background_rounded_blue"
+                                        android:layout_marginRight="@dimen/_5sdp"/>
+
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/editTextRadius"
+                                        android:hint="Radius Max"
+                                        android:layout_width="0dp"
+                                        android:inputType="number"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:background="@null" />
+                                </LinearLayout>
+                            </LinearLayout>
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/btnSimpan"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="SIMPAN"
+                                android:textSize="@dimen/_15sdp"
+                                android:layout_marginTop="16dp"
+                                android:textColor="@color/white"
+                                android:padding="@dimen/_8sdp"
+                                android:background="@drawable/rounded_button_background" />
+                            <ProgressBar
+                                android:id="@+id/progressBar"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:visibility="gone" />
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/btnPassword"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Request Ubah Password"
+                                android:textSize="@dimen/_15sdp"
+                                android:layout_marginTop="16dp"
+                                android:padding="@dimen/_8sdp"
+                                android:backgroundTint="@color/quantum_grey500"
+                                android:background="@drawable/rounded_button_background" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </RelativeLayout>
+            <ImageView
+                android:id="@+id/btnLogout"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:background="@drawable/background_rounded_blue"
+                android:backgroundTint="@color/red"
+                android:src="@drawable/ic_logout"
+                app:tint="@color/white" />
+        </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
+</RelativeLayout>

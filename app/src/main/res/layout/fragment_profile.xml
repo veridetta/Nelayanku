@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/mainContent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/bg1"
+        android:scaleType="centerCrop" />
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:layout_alignParentBottom="true">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="bottom">
+                    <!-- Card view with white background -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="@dimen/_380sdp"
+                        android:layout_marginTop="50dp"
+                        android:padding="@dimen/_8sdp"
+                        android:layout_gravity="bottom"
+                        android:gravity="bottom"
+                        android:background="@drawable/top_rounded_bg">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="16dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="My Profile"
+                                android:layout_marginTop="@dimen/_15sdp"
+                                android:textSize="@dimen/_26sdp"
+                                android:textStyle="bold" />
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="16dp"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/rounded_button_background"
+                                    android:backgroundTint="@color/semi"
+                                    android:gravity="center_vertical"
+                                    android:orientation="horizontal">
+
+                                    <ImageView
+                                        android:layout_width="@dimen/_40sdp"
+                                        android:layout_height="@dimen/_40sdp"
+                                        android:src="@drawable/ic_email_white"
+                                        android:layout_gravity="center_vertical"
+                                        android:background="@drawable/background_rounded_blue"
+                                        android:layout_marginRight="@dimen/_5sdp"/>
+
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/editTextEmail"
+                                        android:enabled="false"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:hint="Email"
+                                        android:background="@null" />
+
+                                </LinearLayout>
+                            </com.google.android.material.textfield.TextInputLayout>
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="16dp"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/rounded_button_background"
+                                    android:backgroundTint="@color/semi"
+                                    android:gravity="center_vertical"
+                                    android:orientation="horizontal">
+
+                                    <ImageView
+                                        android:layout_width="@dimen/_40sdp"
+                                        android:layout_height="@dimen/_40sdp"
+                                        android:src="@drawable/ic_user_white"
+                                        android:layout_gravity="center_vertical"
+                                        android:background="@drawable/background_rounded_blue"
+                                        android:layout_marginRight="@dimen/_5sdp"/>
+
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/editTextName"
+                                        android:hint="Nama Lengkap"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:background="@null" />
+
+                                </LinearLayout>
+                            </com.google.android.material.textfield.TextInputLayout>
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/buttonPickAddress"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="16dp"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/rounded_button_background"
+                                    android:backgroundTint="@color/semi"
+                                    android:gravity="center_vertical"
+                                    android:orientation="horizontal">
+
+                                    <ImageView
+                                        android:layout_width="@dimen/_40sdp"
+                                        android:layout_height="@dimen/_40sdp"
+                                        android:src="@drawable/ic_add_address_white"
+                                        android:layout_gravity="center_vertical"
+                                        android:background="@drawable/background_rounded_blue"
+                                        android:layout_marginRight="@dimen/_5sdp"/>
+
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/pinAddress"
+                                        android:hint="Pilih lokasi"
+                                        android:enabled="false"
+                                        android:layout_width="0dp"
+                                        android:minLines="3"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:background="@null" />
+
+                                </LinearLayout>
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="16dp"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/rounded_button_background"
+                                    android:backgroundTint="@color/semi"
+                                    android:gravity="center_vertical"
+                                    android:orientation="horizontal">
+
+                                    <ImageView
+                                        android:layout_width="@dimen/_40sdp"
+                                        android:layout_height="@dimen/_40sdp"
+                                        android:src="@drawable/ic_address_white"
+                                        android:layout_gravity="center_vertical"
+                                        android:background="@drawable/background_rounded_blue"
+                                        android:layout_marginRight="@dimen/_5sdp"/>
+
+                                    <com.google.android.material.textfield.TextInputEditText
+                                        android:id="@+id/editTextAddress"
+                                        android:hint="Detail alamat"
+                                        android:layout_width="0dp"
+                                        android:minLines="3"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:background="@null" />
+
+                                </LinearLayout>
+                            </com.google.android.material.textfield.TextInputLayout>
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/btnPassword"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Request Ubah Password"
+                                android:textSize="@dimen/_15sdp"
+                                android:layout_marginTop="16dp"
+                                android:padding="@dimen/_8sdp"
+                                android:backgroundTint="@color/quantum_grey500"
+                                android:background="@drawable/rounded_button_background" />
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/buttonRegister"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="UPDATE"
+                                android:textSize="@dimen/_15sdp"
+                                android:layout_marginTop="16dp"
+                                android:textColor="@color/white"
+                                android:padding="@dimen/_8sdp"
+                                android:background="@drawable/rounded_button_background" />
+                            <ProgressBar
+                                android:id="@+id/progressBar"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:visibility="gone" />
+                            <TextView
+                                android:id="@+id/textViewFooter"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Nelayanku. Wujudkan Pemanfaatan Sumber Daya Maritim Lesai dan Berkelanjuan sesuai Program 14th SDs di Indonesia."
+                                android:textSize="12sp"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:textColor="@color/black"
+                                android:gravity="center_horizontal" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal">
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="@dimen/_40sdp"
+                        android:layout_gravity="center_horizontal">
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:cardBackgroundColor="@android:color/white">
+                            <ImageView
+                                android:layout_width="@dimen/_80sdp"
+                                android:layout_height="@dimen/_80sdp"
+                                android:src="@drawable/logo"
+                                android:layout_gravity="center" />
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+            </RelativeLayout>
+        </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
+    <ImageView
+        android:id="@+id/btnLogout"
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:src="@drawable/ic_logout"
+        android:layout_alignParentEnd="true"
+        app:tint="@color/white"
+        android:backgroundTint="@color/red"
+        android:background="@drawable/background_rounded_blue"
+        android:layout_margin="@dimen/_8sdp"/>
+</RelativeLayout>
