@@ -113,7 +113,7 @@ dependencies {
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
     implementation 'com.github.chrisbanes:PhotoView:2.3.0'
 
-    implementation 'com.midtrans:uikit:2.0.0-SANDBOX'
+    implementation 'com.midtrans:uikit:2.0.0'
 
 
 }
