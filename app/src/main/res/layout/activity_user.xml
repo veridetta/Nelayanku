@@ -30,8 +30,8 @@
         app:layout_constraintBottom_toBottomOf="parent" />
     <ImageButton
         android:id="@+id/btnChat"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
+        android:layout_width="@dimen/_32sdp"
+        android:layout_height="@dimen/_32sdp"
         android:background="@drawable/shape_circle"
         android:src="@drawable/ic_chat"
         app:tint="@color/white"
@@ -39,5 +39,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:backgroundTint="@color/colorPrimary"
         android:layout_marginBottom="@dimen/_60sdp"
+        android:layout_marginEnd="@dimen/_13sdp"/>
+    <ImageButton
+        android:id="@+id/btnPeta"
+        android:layout_width="@dimen/_32sdp"
+        android:layout_height="@dimen/_32sdp"
+        android:background="@drawable/shape_circle"
+        android:src="@drawable/fish"
+        app:tint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:backgroundTint="@color/quantum_orange800"
+        android:layout_marginBottom="@dimen/_100sdp"
         android:layout_marginEnd="@dimen/_13sdp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

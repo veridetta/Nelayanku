@@ -8,9 +8,11 @@ class ChatHeaderModel {
     var nameSeller: String? = null
     var uid: String? = null
     var isAdmin: Boolean = false
+    var uidAdmin: String? = null
     var lastChat: String? = null
     var lastTanggal: String? = null
     var lastJam: String? = null
+    var lastSender: String? = null
     var type: String? = null
-    var unRead: Int? = 0
+    var unread: Int? = 0
 }

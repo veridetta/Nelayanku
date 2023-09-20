@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -16,6 +17,7 @@ import com.nelayanku.apps.R
 import com.nelayanku.apps.model.ChatHeaderModel
 import com.nelayanku.apps.model.Informasi
 import com.nelayanku.apps.model.Product
+import com.nelayanku.apps.tools.readChatHeader
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -91,6 +93,18 @@ class ChatHeaderAdapter(
         } else {
             holder.tvName.text = currentProduct.nameUser
         }
+
+        val uidUser = sharedPreferences.getString("userUid", "")
+        if(currentProduct.lastSender==uidUser){
+            holder.tvUnread.visibility = View.GONE
+        }else{
+            if (currentProduct.unread!! > 0) {
+                holder.tvUnread.visibility = View.VISIBLE
+                holder.tvUnread.text = currentProduct.unread.toString() + " pesan baru"
+            } else {
+                holder.tvUnread.visibility = View.GONE
+            }
+        }
         //check type
         if (currentProduct.type == "text") {
             //atur agar lastchat maksimal 50 karakter saja
@@ -134,12 +148,6 @@ class ChatHeaderAdapter(
             listener(currentProduct)
         }
         //cek unread
-        if (currentProduct.unRead!! > 0) {
-            holder.tvUnread.visibility = View.VISIBLE
-            holder.tvUnread.text = currentProduct.unRead.toString() + " pesan baru"
-        } else {
-            holder.tvUnread.visibility = View.GONE
-        }
 
     }
     fun getTimeAgo(targetTime: Long): String {

@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.nelayanku.apps.R
+import com.nelayanku.apps.act.PetaActivity
 import com.nelayanku.apps.act.user.HomeFragment
 import com.nelayanku.apps.act.user.ProfileFragment
 import com.nelayanku.apps.act.user.RiwayatFragment
@@ -20,6 +21,7 @@ class UserActivity : AppCompatActivity() {
     private lateinit var fragmentContainer: FrameLayout
     private lateinit var bottomNavigationView: BottomNavigationView
     private lateinit var btnChat: ImageButton
+    private lateinit var btnPeta: ImageButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,10 +30,15 @@ class UserActivity : AppCompatActivity() {
         fragmentContainer = findViewById(R.id.fragmentContainer)
         bottomNavigationView = findViewById(R.id.bottomNavigationView)
         btnChat = findViewById(R.id.btnChat)
-
+        btnPeta = findViewById(R.id.btnPeta)
         btnChat.setOnClickListener{
             //pindah ke chatlistActivity
             val intent2  = Intent(this, ChatListActivity::class.java)
+            startActivity(intent2)
+        }
+        btnPeta.setOnClickListener{
+            //pindah ke petaActivity
+            val intent2  = Intent(this, PetaActivity::class.java)
             startActivity(intent2)
         }
         val homeFragment = HomeFragment()

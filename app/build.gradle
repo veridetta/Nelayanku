@@ -116,5 +116,8 @@ dependencies {
     //untuk di push
     implementation 'com.midtrans:uikit:2.0.0'
 
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
+
+
 
 }

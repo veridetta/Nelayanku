@@ -3,6 +3,7 @@ package com.nelayanku.apps.tools
 import android.content.Context
 import android.content.Intent
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.firestore.FirebaseFirestore
 import com.nelayanku.apps.chat.ChatActivity
 import com.nelayanku.apps.model.ChatHeaderModel
@@ -29,12 +30,12 @@ fun insertChatHeader(jenis:String,documentId:String, uidUser: String, uidSeller:
                     val uid = UUID.randomUUID().toString()
                     // Atur zona waktu ke WIB (Waktu Indonesia Barat)
                     val timeZone = TimeZone.getTimeZone("Asia/Jakarta")
-// Buat objek SimpleDateFormat dengan zona waktu yang diatur
+                    // Buat objek SimpleDateFormat dengan zona waktu yang diatur
                     val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
                     dateFormat.timeZone = timeZone
                     val timeFormat = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
                     timeFormat.timeZone = timeZone
-// Ambil tanggal dan jam sekarang berdasarkan zona waktu WIB
+                    // Ambil tanggal dan jam sekarang berdasarkan zona waktu WIB
                     val tanggal = dateFormat.format(Date())
                     val jam = timeFormat.format(Date())
                     val chat = hashMapOf(
@@ -65,7 +66,6 @@ fun insertChatHeader(jenis:String,documentId:String, uidUser: String, uidSeller:
                                         // Dokumen berhasil ditambahkan
                                         val documentIdx = newChatHeaderDoc.id
                                         Log.d(TAG, "DocumentSnapshot written with ID: ${documentIdx}")
-                                        //readChatHeader
                                         //insert product ke chat
                                         //intent ke chatActivity
                                         insertChat(
@@ -92,8 +92,10 @@ fun insertChatHeader(jenis:String,documentId:String, uidUser: String, uidSeller:
                                 insertChat(documents.documents[0].id, uidUser,
                                     documents.documents[0].id,
                                     "product", productId, tanggal, jam, false,uidUser)
-                                //readChatHeader
-                                readChatHeader(documentIds,context)
+                                //check uidUser = documents.documents[0].uidUser
+                                if(uidUser == documents.documents[0].get("uidUser")){
+                                    readChatHeader(documentIds,context)
+                                }
                                 //intent ke chatActivity
                                 val intent = Intent(context, ChatActivity::class.java)
                                 intent.putExtra("documentId", documents.documents[0].id)
@@ -117,7 +119,8 @@ fun insertChatHeader(jenis:String,documentId:String, uidUser: String, uidSeller:
                 Log.d(TAG, "get failed with ", exception)
             }
     }
-fun editChatHeader(documentId: String, lastChat: String, lastTanggal: String, lastJam: String, unReadCount: Int, type:String){
+fun editChatHeader(documentId: String, lastChat: String, lastTanggal: String,
+                   lastJam: String, unReadCount: Int, type:String, lastSender:String){
     val db = FirebaseFirestore.getInstance()
     val TAG = "EditChatHeader"
     //buat data chat
@@ -126,7 +129,8 @@ fun editChatHeader(documentId: String, lastChat: String, lastTanggal: String, la
         "lastTanggal" to lastTanggal,
         "lastJam" to lastJam,
         "unread" to unReadCount,
-        "type" to type
+        "type" to type,
+        "lastSender" to lastSender
     )
     //simpan data ke collection ChatHeader
     db.collection("ChatHeader").document(documentId).update(chat as Map<String, Any>)
@@ -204,9 +208,9 @@ fun insertChat(documentId: String, uid: String, chatHeaderId: String, type: Stri
                         //ambil data chatHeader
                         val chatHeader = document.toObject(ChatHeaderModel::class.java)
                         //tambahkan unReadCount
-                        val unReadCount = chatHeader!!.unRead!! + 1
+                        val unReadCount = chatHeader!!.unread!! + 1
                         //update data di collection ChatHeader
-                        editChatHeader(chatHeaderId, message, tanggal, jam, unReadCount,type)
+                        editChatHeader(chatHeaderId, message, tanggal, jam, unReadCount,type,senderId)
                     } else {
                         //log
                         Log.d(TAG, "No such document")
@@ -235,7 +239,7 @@ fun readChat(chatHeaderId: String){
                 //ambil data chatHeader
                 val chatHeader = document.toObject(ChatHeaderModel::class.java)
                 //update data di collection ChatHeader
-                editChatHeader(chatHeaderId, chatHeader!!.lastChat!!, chatHeader.lastTanggal!!, chatHeader.lastJam!!, 0,chatHeader.type!!)
+                editChatHeader(chatHeaderId, chatHeader!!.lastChat!!, chatHeader.lastTanggal!!, chatHeader.lastJam!!, 0,chatHeader.type!!,chatHeader.lastSender!!)
             } else {
                 //log
                 Log.d(TAG, "No such document")
@@ -244,5 +248,101 @@ fun readChat(chatHeaderId: String){
         .addOnFailureListener { exception ->
             //log
             Log.d(TAG, "get failed with ", exception)
+        }
+}
+
+fun insertChatAdminHeader(uidUser: String, nameUser:String, context: Context) {
+    val db = FirebaseFirestore.getInstance()
+    val TAG = "InsertChatHeader"
+    var uidAdmin = ""
+    //ambil where role admin
+    db.collection("users").whereEqualTo("role", "admin")
+        .get()
+        .addOnSuccessListener { documents ->
+            for (document in documents) {
+                uidAdmin = document.id
+            }
+             if(uidAdmin != "") {
+                 //log uidAdmin
+                 Log.d(TAG, "uidAdmin: $uidAdmin")
+                 val uid = UUID.randomUUID().toString()
+                 // Atur zona waktu ke WIB (Waktu Indonesia Barat)
+                 val timeZone = TimeZone.getTimeZone("Asia/Jakarta")
+                 // Buat objek SimpleDateFormat dengan zona waktu yang diatur
+                 val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+                 dateFormat.timeZone = timeZone
+                 val timeFormat = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
+                 timeFormat.timeZone = timeZone
+                 // Ambil tanggal dan jam sekarang berdasarkan zona waktu WIB
+                 val tanggal = dateFormat.format(Date())
+                 val jam = timeFormat.format(Date())
+                 var docId = ""
+                 val chat = hashMapOf(
+                     "uid" to uid,
+                     "uidUser" to uidUser,
+                     "nameUser" to nameUser,
+                     "uidSeller" to uidUser,
+                     "uidAdmin" to uidAdmin,
+                     "nameSeller" to "Admin",
+                     "lastChat" to "",
+                     "lastTanggal" to "",
+                     "unread" to 0,
+                     "lastJam" to "",
+                     "isAdmin" to true
+                 )
+                 //cek dahulu di collection ChatHeader ada data dengan uidUser dan uidSeller tidak
+                 db.collection("ChatHeader")
+                     .whereEqualTo("uidUser", uidUser)
+                     .whereEqualTo("uidSeller", uidAdmin)
+                     .get()
+                     .addOnSuccessListener { documents ->
+                         if (documents.isEmpty) {
+                             // Membuat referensi ke koleksi "ChatHeader"
+                             val chatHeaderCollection = db.collection("ChatHeader")
+                             // Menambahkan dokumen baru ke koleksi "ChatHeader" dan mendapatkan referensi ke dokumen tersebut
+                             val newChatHeaderDoc = chatHeaderCollection.document()
+                             newChatHeaderDoc.set(chat)
+                                 .addOnSuccessListener { _ ->
+                                     // Dokumen berhasil ditambahkan
+                                     val documentIdx = newChatHeaderDoc.id
+                                     insertChat(documentIdx, uidUser, documentIdx, "text", "Hi Admin \uD83D\uDC4B!", tanggal, jam, false,uidUser)
+                                     Log.d(TAG, "DocumentSnapshot written with ID: ${documentIdx}")
+                                     val intent = Intent(context, ChatActivity::class.java)
+                                     intent.putExtra("documentId", documentIdx)
+                                     intent.putExtra("uid", uid)
+                                     intent.putExtra("uidSeller", uidAdmin)
+                                     context.startActivity(intent)
+                                 }
+                                 .addOnFailureListener { e ->
+                                     // Kesalahan saat menambahkan dokumen
+                                 }
+                         } else {
+                             docId = documents.documents[0].id
+                             //ambil role dari sharedpreferences
+                             val sharedPreferences = context.getSharedPreferences("MyPrefs",
+                                 AppCompatActivity.MODE_PRIVATE
+                             )
+                             val role = sharedPreferences.getString("userRole", "")
+                             if(role=="admin"){
+                                 readChatHeader(docId,context)
+                             }
+                             //intent ke chatActivity
+                             val intent = Intent(context, ChatActivity::class.java)
+                             intent.putExtra("documentId", documents.documents[0].id)
+                             //intent uid
+                             intent.putExtra("uid", uid)
+                             intent.putExtra("uid", uidAdmin)
+                             context.startActivity(intent)
+                         }
+                     }
+                     .addOnFailureListener { exception ->
+                         //log
+                         Log.d(TAG, "get failed with ", exception)
+                     }
+             }
+        }
+        .addOnFailureListener { exception ->
+            //log
+            Log.w(TAG, "Error getting documents: ", exception)
         }
 }

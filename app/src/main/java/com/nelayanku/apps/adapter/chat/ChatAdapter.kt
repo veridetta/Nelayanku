@@ -6,15 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.GlideException
 import com.google.firebase.firestore.FirebaseFirestore
 import com.nelayanku.apps.R
 import com.nelayanku.apps.model.ChatModel
 import com.nelayanku.apps.model.Product
 import com.nelayanku.apps.tools.formatCurrency
+
 
 class ChatAdapter(
     private val chatList: List<ChatModel>,
@@ -117,14 +118,24 @@ class ChatAdapter(
             textMessageTextView.text = chatItem.message
             // Cek jika ada URL gambar dalam pesan
             if (chatItem.type == "image" && chatItem.message != null) {
-                // Tampilkan gambar pesan jika ada
-                Glide.with(itemView.context)
-                    .load(chatItem.message)
-                    .into(imageMessageImageView)
+                //sembunyikan text message jika ada gambar
+                textMessageTextView.visibility = View.GONE
                 imageMessageImageView.visibility = View.VISIBLE
+                // Tampilkan gambar pesan jika ada
+                try {
+                    Glide.with(itemView.context)
+                        .load(chatItem.message)
+                        .placeholder(R.drawable.no_image)
+                        .into(imageMessageImageView)
+                } catch (e: GlideException) {
+                    e.logRootCauses("Glide Load Failed")
+                    e.printStackTrace()
+                }
             } else {
                 // Sembunyikan ImageView jika tidak ada gambar
                 imageMessageImageView.visibility = View.GONE
+                //tampilkan text message jika tidak ada gambar
+                textMessageTextView.visibility = View.VISIBLE
             }
         }
     }

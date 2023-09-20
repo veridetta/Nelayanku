@@ -11,6 +11,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/_30sdp"
             android:orientation="vertical">
             <!-- Button for adding product -->
             <include layout="@layout/shimmer_item_product"/>
@@ -22,6 +23,52 @@
                 android:layout_height="match_parent"
                 tools:listitem="@layout/item_chat"/>
             <include layout="@layout/ly_akhir"/>
+            <LinearLayout
+                android:id="@+id/lyCover"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/semi"
+                android:gravity="center"
+                android:layout_margin="@dimen/_8sdp"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:background="@drawable/background_rounded_blue"
+                android:padding="@dimen/_10sdp">
+                <ImageView
+                    android:id="@+id/coverReplace"
+                    android:layout_width="@dimen/_120sdp"
+                    android:layout_height="@dimen/_120sdp"
+                    android:src="@drawable/no_image"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="@dimen/_5sdp" />
+                <LinearLayout
+                    android:id="@+id/btnUpload"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_button_background"
+                    android:backgroundTint="@color/quantum_orange200"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="@dimen/_28sdp"
+                        android:layout_height="@dimen/_28sdp"
+                        android:src="@drawable/ic_upload"
+                        app:tint="@color/white"
+                        android:backgroundTint="@color/quantum_orange"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/background_rounded_blue"
+                        android:layout_marginRight="@dimen/_5sdp"/>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:enabled="false"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginRight="@dimen/_8sdp"
+                        android:hint="Kirim Gambar"
+                        android:background="@null" />
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
     <LinearLayout
