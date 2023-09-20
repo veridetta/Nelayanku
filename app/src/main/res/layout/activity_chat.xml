@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".chat.ChatListActivity">
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <!-- Button for adding product -->
+            <include layout="@layout/shimmer_item_product"/>
+            <!-- RecyclerView for list of products -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvChat"
+                android:nestedScrollingEnabled="false"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:listitem="@layout/item_chat"/>
+            <include layout="@layout/ly_akhir"/>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+        <LinearLayout
+            android:id="@+id/llChat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:padding="@dimen/_5sdp">
+            <ImageView
+                android:id="@+id/ivChat"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_image"
+                app:tint="@color/colorPrimary" />
+            <EditText
+                android:id="@+id/etChat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_button_background"
+                android:hint="Ketik pesan..."
+                android:inputType="textMultiLine"
+                android:lines="1"
+                android:maxLines="5"
+                android:minLines="1"
+                android:padding="@dimen/_5sdp"
+                android:textColor="@android:color/black"
+                android:textColorHint="@color/colorPrimary"
+                android:backgroundTint="@color/semi"
+                android:textSize="@dimen/_13sdp" />
+            <ImageView
+                android:id="@+id/ivSend"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_send"
+                app:tint="@color/colorPrimary" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

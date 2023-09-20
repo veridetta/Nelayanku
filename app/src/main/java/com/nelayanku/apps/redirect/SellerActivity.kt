@@ -1,10 +1,18 @@
 package com.nelayanku.apps.redirect
 
+import android.content.ClipData.newIntent
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.FrameLayout
+import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.messaging.FirebaseMessaging
 import com.nelayanku.apps.R
 import com.nelayanku.apps.act.admin.TarikFragment
 import com.nelayanku.apps.act.admin.TopupFragment
@@ -12,12 +20,15 @@ import com.nelayanku.apps.act.seller.HomeFragment
 import com.nelayanku.apps.act.seller.OrderFragment
 import com.nelayanku.apps.act.seller.ProfileFragment
 import com.nelayanku.apps.act.seller.WalletFragment
+import com.nelayanku.apps.chat.ChatListActivity
 
 
 class SellerActivity : AppCompatActivity() {
 
     private lateinit var fragmentContainer: FrameLayout
     private lateinit var bottomNavigationView: BottomNavigationView
+    private lateinit var btnChat: ImageButton
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,7 +36,13 @@ class SellerActivity : AppCompatActivity() {
 
         fragmentContainer = findViewById(R.id.fragmentContainer)
         bottomNavigationView = findViewById(R.id.bottomNavigationView)
+        btnChat = findViewById(R.id.btnChat)
 
+        btnChat.setOnClickListener{
+            //pindah ke chatlistActivity
+            val intent2  = Intent(this, ChatListActivity::class.java)
+            startActivity(intent2)
+        }
         val homeFragment = HomeFragment()
         //dapatkan intent dari activity sebelumnya
         val intent = intent
@@ -98,4 +115,5 @@ class SellerActivity : AppCompatActivity() {
             .replace(R.id.fragmentContainer, fragment)
             .commit()
     }
+
 }

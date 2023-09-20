@@ -1,0 +1,49 @@
+<!-- res/layout/item_chat.xml -->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="8dp">
+
+    <!-- Gambar profil pengirim (opsional) -->
+    <ImageView
+        android:id="@+id/imageViewProfile"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@drawable/ic_profile"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="8dp" />
+
+    <!-- Balon chat dengan teks -->
+    <LinearLayout
+        android:id="@+id/bubbleLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/imageViewProfile"
+        android:layout_toRightOf="@+id/imageViewProfile"
+        android:background="@drawable/chat_bubble"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <!-- Teks pesan -->
+        <TextView
+            android:id="@+id/textViewMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ini adalah pesan teks"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+
+        <!-- Gambar terlampir (opsional) -->
+        <ImageView
+            android:id="@+id/imageViewAttached"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:src="@drawable/no_image"
+            android:visibility="gone" />
+    </LinearLayout>
+
+</LinearLayout>

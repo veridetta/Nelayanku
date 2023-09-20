@@ -52,6 +52,7 @@ class ProfileFragment : Fragment() {
     private lateinit var editTextEmail: EditText
     private lateinit var btnPassword: Button
     private lateinit var editTextName: EditText
+    private lateinit var editTextNoHP: EditText
     private lateinit var editTextAddress: EditText
     private lateinit var progressDialog: ProgressDialog
     private lateinit var buttonPickAddress: TextInputLayout
@@ -108,6 +109,7 @@ class ProfileFragment : Fragment() {
         editTextEmail = view.findViewById(R.id.editTextEmail)
         btnPassword = view.findViewById(R.id.btnPassword)
         editTextName = view.findViewById(R.id.editTextName)
+        editTextNoHP = view.findViewById(R.id.editTextNoHP)
         editTextAddress = view.findViewById(R.id.editTextAddress)
         pinAddress = view.findViewById(R.id.pinAddress)
         buttonPickAddress = view.findViewById(R.id.buttonPickAddress)
@@ -164,6 +166,7 @@ class ProfileFragment : Fragment() {
     fun updateData(view:View, uid : String){
         val email = editTextEmail.text.toString()
         val name = editTextName.text.toString()
+        val noHP = editTextNoHP.text.toString()
         val address = pickedAddress ?: ""
         val lat = pickedLat ?: 0.0
         val lon = pickedLng ?: 0.0
@@ -174,6 +177,7 @@ class ProfileFragment : Fragment() {
             val newUser = hashMapOf(
                 "email" to email,
                 "name" to name,
+                "noHP" to noHP,
                 "address" to address,
                 "isVerified" to true,
                 "latitude" to lat,
@@ -213,6 +217,7 @@ class ProfileFragment : Fragment() {
         super.onSaveInstanceState(outState)
         outState.putString("email", editTextEmail.text.toString())
         outState.putString("name", editTextName.text.toString())
+        outState.putString("noHP", editTextNoHP.text.toString())
         outState.putString("detail", editTextAddress.text.toString())
         outState.putDouble("lat", pickedLat)
         outState.putDouble("lng", pickedLng)
@@ -223,6 +228,7 @@ class ProfileFragment : Fragment() {
         if (savedInstanceState != null) {
             editTextEmail.setText(savedInstanceState.getString("email"))
             editTextName.setText(savedInstanceState.getString("name"))
+            editTextNoHP.setText(savedInstanceState.getString("noHP"))
             editTextAddress.setText(savedInstanceState.getString("detail"))
             if (pickedLat == 0.0) {
                 pickedLat = savedInstanceState.getDouble("lat")
@@ -246,6 +252,7 @@ class ProfileFragment : Fragment() {
                         userData?.let { user ->
                             editTextEmail.setText(user.email)
                             editTextName.setText(user.name)
+                            editTextNoHP.setText(user.noHP)
                             editTextAddress.setText(user.address)
                             pinAddress.setText(user.address)
                             editTextAddress.setText(user.detailAddress)

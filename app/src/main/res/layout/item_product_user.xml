@@ -52,15 +52,39 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:weightSum="2"
             android:layout_marginTop="8dp">
             <LinearLayout
-                android:id="@+id/lyiconEdit"
+                android:id="@+id/lyiconChat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:gravity="end"
                 android:layout_weight="1">
+                <LinearLayout
+                    android:id="@+id/btnChat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_button_background"
+                    android:backgroundTint="@color/quantum_orange200"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="@dimen/_28sdp"
+                        android:layout_height="@dimen/_28sdp"
+                        android:src="@drawable/ic_chat"
+                        app:tint="@color/white"
+                        android:layout_gravity="center_vertical"
+                        android:backgroundTint="@color/quantum_orange800"
+                        android:background="@drawable/background_rounded_blue" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/lyiconEdit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginStart="@dimen/_6sdp"
+                android:gravity="end">
                 <LinearLayout
                     android:id="@+id/btnLanjut"
                     android:layout_width="wrap_content"

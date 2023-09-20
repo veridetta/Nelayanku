@@ -4,14 +4,21 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
+import android.view.View
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.FirebaseApp
 import com.google.firebase.appcheck.debug.DebugAppCheckProviderFactory
 import com.google.firebase.appcheck.ktx.appCheck
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.ktx.initialize
+import com.google.firebase.messaging.FirebaseMessaging
 import com.nelayanku.apps.redirect.AdminActivity
 import com.nelayanku.apps.redirect.SellerActivity
 import com.nelayanku.apps.redirect.UserActivity
@@ -42,6 +49,7 @@ class SplashActivity : AppCompatActivity() {
         Handler(Looper.getMainLooper()).postDelayed({
             checkUserLogin()
         }, 2000) // Jeda selama 2 detik
+
     }
 
     private fun simulateLoading() {
@@ -65,6 +73,7 @@ class SplashActivity : AppCompatActivity() {
 
         val targetActivity = when {
             isLoggedIn -> {
+                //cek token firebase
                 when (userRole) {
                     "admin" -> AdminActivity::class.java
                     "user" -> UserActivity::class.java
@@ -74,8 +83,52 @@ class SplashActivity : AppCompatActivity() {
             }
             else -> LoginActivity::class.java
         }
+        //jika berhasil login maka update token
+        if (isLoggedIn) {
+            //cek jika token kosong maka update token
+            val tokken = sharedPreferences.getString("token", "")
+            if (tokken.isNullOrEmpty()) {
+                val uid = sharedPreferences.getString("userUid", "")
+                updateToken(uid.toString())
+            }
+        }
 
         startActivity(Intent(this@SplashActivity, targetActivity))
         finish()
+    }
+    private fun updateToken(uid :String){
+        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+            if (!task.isSuccessful) {
+                Log.w("TAG", "Fetching FCM registration token failed", task.exception)
+                return@OnCompleteListener
+            }
+            // Get new FCM registration token
+            val token = task.result
+            if (token.isNotEmpty()) {
+                val newUser = hashMapOf(
+                    "token" to token,
+                )
+                //get uid
+                val db = FirebaseFirestore.getInstance()
+                // Update the product data in Firestore
+                db.collection("users")
+                    .document(uid) // Gunakan productId yang ada untuk merujuk dokumen yang ingin diubah
+                    .update(newUser as Map<String, Any>)
+                    .addOnSuccessListener {
+                        Log.d("BERHASIL", "DocumentSnapshot successfully updated!")
+                    }
+            }else {
+                Log.d("GAGAL", "Error updating document")
+            }
+            //simpan token ke shared preferences
+            val sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
+            val editor = sharedPreferences.edit()
+            editor.putString("token", token)
+            editor.apply()
+            //insert textview baru
+            loadingText!!.visibility = View.VISIBLE
+            loadingText!!.text = token
+            Log.d("TAG", token.toString())
+        })
     }
 }

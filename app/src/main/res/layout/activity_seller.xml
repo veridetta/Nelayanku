@@ -7,8 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".redirect.SellerActivity">
 
-    <!-- Other content of the SellerActivity layout -->
-
     <FrameLayout
         android:id="@+id/fragmentContainer"
         android:layout_width="match_parent"
@@ -28,4 +26,17 @@
         app:itemIconTint="@drawable/icon_color_selector"
         app:itemBackground="@drawable/bottom_nav_item_bg_selector"
         app:layout_constraintBottom_toBottomOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btnChat"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:background="@drawable/shape_circle"
+        android:src="@drawable/ic_chat"
+        app:tint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:backgroundTint="@color/colorPrimary"
+        android:layout_marginBottom="@dimen/_60sdp"
+        android:layout_marginEnd="@dimen/_13sdp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

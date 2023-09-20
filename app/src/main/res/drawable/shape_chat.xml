@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@android:id/background">
+        <shape
+            android:shape="rectangle">
+            <solid android:color="#E0E0E0" /> <!-- Warna latar belakang -->
+            <corners android:radius="16dp" /> <!-- Radius sudut untuk membuat latar belakang bulat -->
+        </shape>
+    </item>
+    <item android:right="1dp" android:left="1dp" android:top="1dp">
+        <shape
+            android:shape="rectangle">
+            <solid android:color="#FFFFFF" /> <!-- Warna untuk membuat border putih -->
+            <corners android:radius="16dp" /> <!-- Radius sudut yang sama dengan latar belakang -->
+        </shape>
+    </item>
+</layer-list>

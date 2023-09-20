@@ -38,6 +38,7 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var editTextEmail: EditText
     private lateinit var editTextPassword: EditText
     private lateinit var editTextName: EditText
+    private lateinit var editTextNoHP: EditText
     private lateinit var editTextAddress: EditText
     private lateinit var progressBar: ProgressBar
     private lateinit var buttonPickAddress: TextInputLayout
@@ -58,6 +59,7 @@ class RegisterActivity : AppCompatActivity() {
         editTextEmail = findViewById(R.id.editTextEmail)
         editTextPassword = findViewById(R.id.editTextPassword)
         editTextName = findViewById(R.id.editTextName)
+        editTextNoHP= findViewById(R.id.editTextNoHP)
         editTextAddress = findViewById(R.id.editTextAddress)
         pinAddress = findViewById(R.id.pinAddress)
         progressBar = findViewById(R.id.progressBar)
@@ -83,6 +85,7 @@ class RegisterActivity : AppCompatActivity() {
             val email = editTextEmail.text.toString()
             val password = editTextPassword.text.toString()
             val name = editTextName.text.toString()
+            val noHP = editTextNoHP.text.toString()
             val address = pickedAddress ?: ""
             val lat = pickedLat ?: 0.0
             val lon = pickedLng ?: 0.0
@@ -99,6 +102,7 @@ class RegisterActivity : AppCompatActivity() {
                                 "uid" to uid,
                                 "email" to email,
                                 "name" to name,
+                                "noHP" to noHP,
                                 "provider" to "email",
                                 "address" to address,
                                 "role" to "user",
@@ -184,6 +188,7 @@ class RegisterActivity : AppCompatActivity() {
         outState.putString("email", editTextEmail.text.toString())
         outState.putString("password", editTextPassword.text.toString())
         outState.putString("name", editTextName.text.toString())
+        outState.putString("noHP", editTextNoHP.text.toString())
         outState.putString("detail", editTextAddress.text.toString())
         outState.putDouble("lat", pickedLat)
         outState.putDouble("lng", pickedLng)
@@ -194,6 +199,7 @@ class RegisterActivity : AppCompatActivity() {
         editTextEmail.setText(savedInstanceState.getString("email"))
         editTextPassword.setText(savedInstanceState.getString("password"))
         editTextName.setText(savedInstanceState.getString("name"))
+        editTextNoHP.setText(savedInstanceState.getString("noHP"))
         editTextAddress.setText(savedInstanceState.getString("detail"))
         if (pickedLat==0.0){
             pickedLat=savedInstanceState.getDouble("lat")

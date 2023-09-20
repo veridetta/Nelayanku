@@ -1,5 +1,6 @@
 package com.nelayanku.apps.act.user
 import android.app.ProgressDialog
+import android.content.Context.MODE_PRIVATE
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
@@ -21,17 +22,21 @@ import com.nelayanku.apps.R
 import com.nelayanku.apps.act.seller.InfoActivity
 import com.nelayanku.apps.act.seller.LayananActivity
 import com.nelayanku.apps.adapter.user.ProductAdapter
+import com.nelayanku.apps.chat.ChatActivity
 import com.nelayanku.apps.model.Product
 import com.nelayanku.apps.model.SettingModel
 import com.nelayanku.apps.model.UserDetail
 import com.nelayanku.apps.tools.Const.PATH_COLLECTION
 import com.nelayanku.apps.tools.hitungJarak
+import com.nelayanku.apps.tools.insertChatHeader
 import com.nelayanku.apps.tools.ongkir
+import com.nelayanku.apps.tools.readChatHeader
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
+import java.util.UUID
 
 class HomeFragment : Fragment() {
 
@@ -73,8 +78,10 @@ class HomeFragment : Fragment() {
             // set the custom adapter to the RecyclerView
             productAdapter = ProductAdapter(
                 productList,
-                requireContext()
-            ) { product -> lanjutPembayaran(product) }
+                requireContext(),
+            { product: Product -> lanjutPembayaran(product) },
+            { product: Product -> lanjutChat(product) }
+            )
         }
         shimmerContainer = itemView.findViewById<ShimmerFrameLayout>(R.id.shimmerContainer)
         readDataUserNow(mFirestore)
@@ -128,6 +135,8 @@ class HomeFragment : Fragment() {
                     if (jarak <= radius.toDouble()){
                         ongkir = ongkir(jarak)
                         //log
+                        //documenId
+                        product.documentId = document.id
                         Log.d(TAG, "Ongkir : $ongkir")
                         product.ongkir = ongkir.toString()
                         product.layananPembeli = layananPembeli
@@ -155,6 +164,28 @@ class HomeFragment : Fragment() {
                 }
             }
         }
+    }
+    fun lanjutChat(product: Product){
+        //intent ke chatActivity
+        simpanBaruChat(product)
+
+    }
+    private fun simpanBaruChat(product: Product){
+        //progress dialog
+        val progressDialog = ProgressDialog(requireContext())
+        progressDialog.setMessage("Loading...")
+        progressDialog.setCancelable(false)
+        progressDialog.show()
+        //ambil val uid dan nama dari sharedpreferences
+        val sharedPreferences = requireContext().getSharedPreferences("MyPrefs", MODE_PRIVATE)
+        val uidUser = sharedPreferences.getString("userUid", "")
+        val namaUser = sharedPreferences.getString("userName", "")
+        var uidSeller = product.uid.toString()
+        var namaSeler =""
+        insertChatHeader("product",product.documentId.toString(),uidUser!!,uidSeller,
+            namaUser!!,namaSeler,false,"","","",1,
+            requireContext(), product.documentId.toString())
+        progressDialog.dismiss()
     }
     private fun lanjutPembayaran(product: Product) {
         val intent = Intent(requireContext(), PembayaranActivity::class.java)
@@ -196,7 +227,6 @@ class HomeFragment : Fragment() {
                 }
             }
             .addOnFailureListener { exception ->
-
                 //log gagal
                 Log.e("TAG", "get failed with ", exception)
             }

@@ -1,0 +1,24 @@
+<!-- res/drawable/chat_bubble.xml -->
+
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Bentuk balon chat -->
+    <item android:id="@+id/shapeChatBubble">
+        <shape
+            android:shape="rectangle">
+            <solid android:color="#FFFFFF" /> <!-- Warna latar belakang -->
+            <corners android:radius="12dp" /> <!-- Sudut membulat -->
+        </shape>
+    </item>
+
+    <!-- Garis tepi balon chat (opsional) -->
+    <item android:id="@+id/strokeChatBubble">
+        <shape
+            android:shape="rectangle">
+            <solid android:color="@android:color/transparent" /> <!-- Warna latar belakang transparan -->
+            <stroke
+                android:color="#E0E0E0"
+            android:width="1dp" /> <!-- Lebar garis tepi -->
+            <corners android:radius="12dp" /> <!-- Sudut membulat (sama dengan latar belakang) -->
+        </shape>
+    </item>
+</layer-list>

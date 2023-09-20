@@ -7,6 +7,8 @@ class UserDetail {
 
     var name: String? = null
 
+    var noHP: String? = null
+
     var provider: String? = null
 
     var address: String? = null

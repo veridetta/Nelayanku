@@ -117,6 +117,7 @@ class LoginActivity : AppCompatActivity() {
                                     editor.putString("userAddress", documentSnapshot.getString("address"))
                                     editor.putString("userUid", documentSnapshot.getString("uid"))
                                     editor.putString("userName", documentSnapshot.getString("name"))
+                                    editor.putString("userPhone", documentSnapshot.getString("noHP"))
                                     editor.putString("userEmail", documentSnapshot.getString("email"))
                                     editor.apply()
 

@@ -1,7 +1,9 @@
 package com.nelayanku.apps.redirect
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.FrameLayout
+import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -10,12 +12,14 @@ import com.nelayanku.apps.act.user.HomeFragment
 import com.nelayanku.apps.act.user.ProfileFragment
 import com.nelayanku.apps.act.user.RiwayatFragment
 import com.nelayanku.apps.act.user.WalletFragment
+import com.nelayanku.apps.chat.ChatListActivity
 
 
 class UserActivity : AppCompatActivity() {
 
     private lateinit var fragmentContainer: FrameLayout
     private lateinit var bottomNavigationView: BottomNavigationView
+    private lateinit var btnChat: ImageButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,7 +27,13 @@ class UserActivity : AppCompatActivity() {
 
         fragmentContainer = findViewById(R.id.fragmentContainer)
         bottomNavigationView = findViewById(R.id.bottomNavigationView)
+        btnChat = findViewById(R.id.btnChat)
 
+        btnChat.setOnClickListener{
+            //pindah ke chatlistActivity
+            val intent2  = Intent(this, ChatListActivity::class.java)
+            startActivity(intent2)
+        }
         val homeFragment = HomeFragment()
         //dapatkan intent dari activity sebelumnya
         val intent = intent

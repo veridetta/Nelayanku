@@ -25,6 +25,8 @@ class ProductAdapter(
     private var productList: MutableList<Product>,
     val context: Context,
     private val onAccClickListener: (Product) -> Unit,
+    //btnChat
+    private val onChatClickListener: (Product) -> Unit
 ) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
     public var filteredProductList: MutableList<Product> = mutableListOf()
     init {
@@ -85,6 +87,7 @@ class ProductAdapter(
             .into(holder.imageProductCover)
 
         holder.btnAcc.setOnClickListener { onAccClickListener(currentProduct) }
+        holder.btnChat.setOnClickListener { onChatClickListener(currentProduct) }
     }
 
     inner class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -93,5 +96,6 @@ class ProductAdapter(
         val textProductDescription: TextView = itemView.findViewById(R.id.textProductDescription)
         val imageProductCover: ImageView = itemView.findViewById(R.id.imageProductCover)
         val btnAcc: LinearLayout = itemView.findViewById(R.id.btnLanjut)
+        val btnChat: LinearLayout = itemView.findViewById(R.id.btnChat)
     }
 }
