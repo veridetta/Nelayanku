@@ -2,12 +2,15 @@ package com.nelayanku.apps.act
 
 // Import Google Maps
 
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.location.Address
 import android.location.Geocoder
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -80,6 +83,27 @@ class PetaActivity : AppCompatActivity() {
                                     .anchor(0.5f, 0.5f)
                             )
                             marker?.let { markers.add(it) }
+                            // Setelah menambahkan marker, tambahkan kode berikut untuk menangani klik pada snippet.
+                            googleMap.setOnInfoWindowClickListener { marker ->
+                                // Dapatkan URL Google Maps dari snippet
+                                val snippet = marker.snippet
+                                if (snippet != null && snippet.startsWith("Url Google Maps : ")) {
+                                    //buka gmaps berdasarkan lat dan lng
+                                    val gmmIntentUri = Uri.parse("geo:$lat,$lng")
+                                    val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
+                                    mapIntent.setPackage("com.google.android.apps.maps") // Pastikan membuka aplikasi Google Maps
+                                    if (mapIntent.resolveActivity(packageManager) != null) {
+                                        startActivity(mapIntent)
+                                    } else {
+                                        // Jika Google Maps tidak terinstal, Anda dapat menangani tindakan ini sesuai kebutuhan Anda
+                                        // Misalnya, memberikan pesan kepada pengguna untuk menginstal Google Maps.
+                                        Toast.makeText(this, "Google Maps tidak terinstal.", Toast.LENGTH_SHORT).show()
+                                        //buka lewat browser
+                                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(gmaps))
+                                        startActivity(intent)
+                                    }
+                                }
+                            }
                         }
 
                         // Zoom peta agar semua marker terlihat
