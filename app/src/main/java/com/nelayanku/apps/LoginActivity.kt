@@ -28,6 +28,7 @@ import com.nelayanku.apps.account.SellerRegisterActivity
 import com.nelayanku.apps.redirect.AdminActivity
 import com.nelayanku.apps.redirect.SellerActivity
 import com.nelayanku.apps.redirect.UserActivity
+import com.nelayanku.apps.tools.showConfirmationDialog
 
 
 class LoginActivity : AppCompatActivity() {
@@ -285,4 +286,8 @@ class LoginActivity : AppCompatActivity() {
     companion object {
         private const val RC_SIGN_IN = 9001
     }
+    override fun onBackPressed() {
+        showConfirmationDialog(this)
+    }
+
 }

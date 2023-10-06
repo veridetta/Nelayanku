@@ -13,8 +13,8 @@ android {
         applicationId "com.nelayanku.apps"
         minSdk 24
         targetSdk 33
-        versionCode 1
-        versionName "1.0"
+        versionCode 103
+        versionName "1.0.3"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -116,7 +116,6 @@ dependencies {
     //untuk di push
     implementation 'com.midtrans:uikit:2.0.0'
 
-    implementation 'com.google.android.gms:play-services-maps:17.0.0'
 
 
 

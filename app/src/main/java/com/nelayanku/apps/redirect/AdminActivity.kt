@@ -15,6 +15,7 @@ import com.nelayanku.apps.act.admin.TarikFragment
 import com.nelayanku.apps.act.admin.TopupFragment
 import com.nelayanku.apps.act.admin.HomeFragment
 import com.nelayanku.apps.chat.ChatListActivity
+import com.nelayanku.apps.tools.showConfirmationDialog
 
 
 class AdminActivity : AppCompatActivity() {
@@ -119,5 +120,10 @@ class AdminActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragmentContainer, fragment)
             .commit()
+    }
+
+    //on back pressed
+    override fun onBackPressed() {
+        showConfirmationDialog(this)
     }
 }

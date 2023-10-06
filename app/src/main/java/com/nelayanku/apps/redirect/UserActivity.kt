@@ -14,6 +14,7 @@ import com.nelayanku.apps.act.user.ProfileFragment
 import com.nelayanku.apps.act.user.RiwayatFragment
 import com.nelayanku.apps.act.user.WalletFragment
 import com.nelayanku.apps.chat.ChatListActivity
+import com.nelayanku.apps.tools.showConfirmationDialog
 
 
 class UserActivity : AppCompatActivity() {
@@ -102,5 +103,8 @@ class UserActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction()
             .replace(R.id.fragmentContainer, fragment)
             .commit()
+    }
+    override fun onBackPressed() {
+        showConfirmationDialog(this)
     }
 }
