@@ -9,6 +9,7 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.view.View
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
@@ -35,9 +36,10 @@ import java.util.UUID
 
 class PembayaranActivity : AppCompatActivity() {
     //init textview dan elemen lain dari xml
-    lateinit var tvAlamat : TextView
+    lateinit var tvAlamat : EditText
     lateinit var tvNamaBarang : TextView
     lateinit var tvHarga : TextView
+    lateinit var etNamaPenerima : EditText
     lateinit var tvTotal : TextView
     lateinit var tvJumlahBarang : TextView
     //tv tv_ongkir
@@ -87,6 +89,7 @@ class PembayaranActivity : AppCompatActivity() {
         tvAlamat = findViewById(R.id.tv_alamat)
         tvNamaBarang = findViewById(R.id.tv_nama_barang)
         tvHarga = findViewById(R.id.tv_harga_barang)
+        etNamaPenerima = findViewById(R.id.etNamaPenerima)
         tvTotal = findViewById(R.id.tv_total)
         tvJumlahBarang = findViewById(R.id.tv_jumlah_barang)
         //tv tv_ongkir
@@ -124,6 +127,24 @@ class PembayaranActivity : AppCompatActivity() {
         total = hargaBarang.toInt()
         jumlahBarang = 1
         grandTotalgrandTotal = hargaBarang.toDouble() + ongkir.toDouble() + biaya.toDouble()
+    }
+    private fun loadIdentitas(){
+        //load identitas
+        val uid = auth.currentUser?.uid
+        uid?.let {
+            firestore.collection("users").document(it).get().addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val document = task.result
+                    if (document != null) {
+                        val nama = document.getString("nama")
+                        val alamat = document.getString("alamat")
+                        val noHp = document.getString("noHp")
+                        tvAlamat.setText(alamat)
+                        etNamaPenerima.setText(nama)
+                    }
+                }
+            }
+        }
     }
     fun loadFirebase(){
         //load data dari firebase

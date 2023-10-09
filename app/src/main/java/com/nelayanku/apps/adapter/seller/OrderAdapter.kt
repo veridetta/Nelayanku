@@ -111,6 +111,8 @@ class OrderAdapter(
             holder.spStatus.visibility = View.VISIBLE
         }
         holder.btnUbah.setOnClickListener { onAccClickListener(currentProduct) }
+        holder.tvNamaPenerima.text = "Nama Penerima : "+currentProduct.namaPenerima
+        holder.tvAlamat.text = currentProduct.alamat
     }
 
     inner class OrderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -123,6 +125,8 @@ class OrderAdapter(
         val textViewLayanan: TextView = itemView.findViewById(R.id.textViewLayanan)
         val textViewTLayanan: TextView = itemView.findViewById(R.id.textViewTLayanan)
         val textViewTotalHargaValue: TextView = itemView.findViewById(R.id.textViewTotalHargaValue)
+        val tvNamaPenerima: TextView = itemView.findViewById(R.id.tvNamaPenerima)
+        val tvAlamat: TextView = itemView.findViewById(R.id.tvAlamat)
         val btnUbah: Button = itemView.findViewById(R.id.btnUbah)
         val spStatus: Spinner = itemView.findViewById(R.id.spStatus)
     }

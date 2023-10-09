@@ -88,6 +88,15 @@ class ProductAdapter(
 
         holder.btnAcc.setOnClickListener { onAccClickListener(currentProduct) }
         holder.btnChat.setOnClickListener { onChatClickListener(currentProduct) }
+        var isExpanded = false
+        holder.textProductDescription.setOnClickListener {
+            isExpanded = !isExpanded
+            if (isExpanded) {
+                holder.textProductDescription.maxLines = Int.MAX_VALUE // Tampilkan semua baris
+            } else {
+                holder.textProductDescription.maxLines = 3 // Kembali ke maksimum 3 baris
+            }
+        }
     }
 
     inner class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

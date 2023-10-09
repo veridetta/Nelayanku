@@ -57,6 +57,23 @@
             android:text="Id Pesanan"
             android:textSize="@dimen/_13sdp" />
         <TextView
+            android:id="@+id/tvNamaPenerima"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nama Penerima :"
+            android:textSize="@dimen/_13sdp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Alamat Pengiriman:"
+            android:textSize="@dimen/_13sdp" />
+        <TextView
+            android:id="@+id/tvAlamat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nama Penerima :"
+            android:textSize="@dimen/_13sdp" />
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="Keterangan"

@@ -85,7 +85,8 @@ class RiwayatAdapter(
             holder.btnSelesai.visibility = View.GONE
         }
         holder.btnSelesai.setOnClickListener { onAccClickListener(currentProduct) }
-
+        holder.tvNamaPenerima.text = "Nama Penerima : "+currentProduct.namaPenerima
+        holder.tvAlamat.text = currentProduct.alamat
     }
 
     inner class OrderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -97,6 +98,8 @@ class RiwayatAdapter(
         val textViewTotal: TextView = itemView.findViewById(R.id.textViewTotal)
         val textViewLayanan: TextView = itemView.findViewById(R.id.textViewLayanan)
         val textViewTLayanan: TextView = itemView.findViewById(R.id.textViewTLayanan)
+        val tvNamaPenerima: TextView = itemView.findViewById(R.id.tvNamaPenerima)
+        val tvAlamat: TextView = itemView.findViewById(R.id.tvAlamat)
         val textViewOngkir: TextView = itemView.findViewById(R.id.textViewOngkir)
         val textViewTotalHargaValue: TextView = itemView.findViewById(R.id.textViewTotalHargaValue)
         //btnSelesai

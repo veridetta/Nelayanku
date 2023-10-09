@@ -18,5 +18,7 @@ class Order  // Empty constructor
     var bulan: String? = null
     var tahun: String? = null
     var tanggal: String? = null
+    var alamat: String? = null
+    var namaPenerima: String? = null
 
 }

@@ -44,7 +44,12 @@
             android:text="Product Description"
             android:textSize="14sp"
             android:textColor="@android:color/darker_gray"
-            android:layout_marginTop="8dp" />
+            android:layout_marginTop="8dp"
+            android:maxLines="3"
+            android:ellipsize="end"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="toggleDescription" />
 
         <!-- Add more TextViews or ImageViews for additional product details if needed -->
 
