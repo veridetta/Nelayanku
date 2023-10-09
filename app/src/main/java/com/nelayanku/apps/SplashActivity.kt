@@ -48,7 +48,7 @@ class SplashActivity : AppCompatActivity() {
         )
         Handler(Looper.getMainLooper()).postDelayed({
             checkUserLogin()
-        }, 1000) // Jeda selama 2 detik
+        }, 1000) // Jeda selama 1 detik
 
     }
 

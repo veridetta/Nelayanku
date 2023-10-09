@@ -14,11 +14,13 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.facebook.shimmer.ShimmerFrameLayout
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.nelayanku.apps.R
 import com.nelayanku.apps.adapter.seller.ProductAdapter
 import com.nelayanku.apps.model.Product
+import com.nelayanku.apps.redirect.SellerActivity
 import com.nelayanku.apps.tools.Const.PATH_COLLECTION
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -64,8 +66,10 @@ class HomeFragment : Fragment() {
             // set the custom adapter to the RecyclerView
             productAdapter = ProductAdapter(
                 productList,
-                requireContext()
-            ) { product -> editProduct(product) }
+                requireContext(),
+                { product -> editProduct(product) },
+                { product -> editStatus(product) }
+            )
         }
         val shimmerContainer = itemView.findViewById<ShimmerFrameLayout>(R.id.shimmerContainer)
         val uid = FirebaseAuth.getInstance().currentUser?.uid
@@ -125,6 +129,43 @@ class HomeFragment : Fragment() {
         val intent = Intent(requireContext(), ProductEditActivity::class.java)
         intent.putExtra("productId", product.productId) // Mengirim productId ke EditProductActivity
         startActivity(intent)
+    }
+
+    private fun editStatus(produk: Product){
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        val uid = currentUser?.uid ?: ""
+        var sta = ""
+        if (produk.status == "published") {
+            sta = "nonaktif"
+        }else{
+            sta = "published"
+        }
+
+        val productData = hashMapOf(
+            "status" to sta
+        )
+
+        val db = FirebaseFirestore.getInstance()
+
+        // Update the product data in Firestore
+        db.collection("products")
+            .document(produk.documentId.toString()) // Gunakan productId yang ada untuk merujuk dokumen yang ingin diubah
+            .update(productData as Map<String, Any>)
+            .addOnSuccessListener {
+                // Product updated successfully
+                Snackbar.make(requireView(), "Produk berhasil diubah", Snackbar.LENGTH_SHORT).show()
+                // Redirect to SellerActivity fragment home
+                val intent = Intent(requireContext(), SellerActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+                intent.putExtra("fragment","home")
+                startActivity(intent)
+                requireActivity().finish()
+            }
+            .addOnFailureListener { e ->
+                // Error occurred while updating product
+                Snackbar.make(requireView(), "Gagal mengubah produk: ${e.message}", Snackbar.LENGTH_SHORT).show()
+            }
+
     }
 
 }

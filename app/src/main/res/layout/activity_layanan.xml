@@ -30,7 +30,8 @@
                 android:textSize="@dimen/_12sdp"
                 android:layout_gravity="center"/>
             <LinearLayout
-                android:layout_width="match_parent"
+                android:id="@+id/btnWa"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:padding="@dimen/_10sdp">
@@ -48,7 +49,8 @@
                     android:layout_gravity="center_vertical"/>
             </LinearLayout>
             <LinearLayout
-                android:layout_width="match_parent"
+                android:id="@+id/btnFb"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/_10sdp"
                 android:orientation="horizontal">
@@ -66,7 +68,27 @@
                     android:layout_gravity="center_vertical"/>
             </LinearLayout>
             <LinearLayout
-                android:layout_width="match_parent"
+                android:id="@+id/btnIg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_10sdp"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:background="@drawable/ic_instagram"
+                    android:layout_marginEnd="8dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Instagram"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12sdp"
+                    android:layout_gravity="center_vertical"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/btnYt"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:padding="@dimen/_10sdp">
@@ -84,7 +106,27 @@
                     android:layout_gravity="center_vertical"/>
             </LinearLayout>
             <LinearLayout
-                android:layout_width="match_parent"
+                android:id="@+id/btnTt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/_10sdp">
+                <ImageView
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:background="@drawable/ic_tiktok"
+                    android:layout_marginEnd="8dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tiktok"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12sdp"
+                    android:layout_gravity="center_vertical"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/btnGm"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/_10sdp"
                 android:orientation="horizontal">
@@ -102,7 +144,8 @@
                     android:layout_gravity="center_vertical"/>
             </LinearLayout>
             <LinearLayout
-                android:layout_width="match_parent"
+                android:id="@+id/btnX"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/_10sdp"
                 android:orientation="horizontal">

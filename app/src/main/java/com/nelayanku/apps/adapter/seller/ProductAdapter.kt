@@ -21,6 +21,7 @@ class ProductAdapter(
     private var productList: MutableList<Product>,
     val context: Context,
     private val onEditClickListener: (Product) -> Unit,
+    private val onStatusEdit: (Product) -> Unit,
 ) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
     public var filteredProductList: MutableList<Product> = mutableListOf()
     init {
@@ -83,10 +84,13 @@ class ProductAdapter(
         // Set background color of statusIndicator based on product status
         if (currentProduct.status == "published") {
             holder.statusIndicator.setBackgroundColor(ContextCompat.getColor(context, R.color.publishedStatusColor))
+            holder.btnTvStatus.text="Nonaktifkan"
         } else {
+            holder.btnTvStatus.text="Aktifkan"
             holder.statusIndicator.setBackgroundColor(ContextCompat.getColor(context, R.color.pendingStatusColor))
         }
         holder.lyiconEdit.setOnClickListener { onEditClickListener(currentProduct) }
+        holder.btnStatus.setOnClickListener { onStatusEdit(currentProduct) }
     }
 
     inner class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -95,8 +99,9 @@ class ProductAdapter(
         val textProductDescription: TextView = itemView.findViewById(R.id.textProductDescription)
         val imageProductCover: ImageView = itemView.findViewById(R.id.imageProductCover)
         val statusIndicator: Button = itemView.findViewById(R.id.statusIndicator)
-        val iconEdit: ImageView = itemView.findViewById(R.id.iconEdit)
-        val lyiconEdit: LinearLayout = itemView.findViewById(R.id.lyiconEdit)
+        val lyiconEdit: LinearLayout = itemView.findViewById(R.id.iconEdit)
+        val btnTvStatus: TextView = itemView.findViewById(R.id.btnTvStatus)
+        val btnStatus: LinearLayout = itemView.findViewById(R.id.btnStatus)
         // Add logic for delete button view here
     }
 }

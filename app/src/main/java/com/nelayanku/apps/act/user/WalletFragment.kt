@@ -86,20 +86,10 @@ class WalletFragment : Fragment() {
         spinnerBulan = view.findViewById(R.id.spinnerBulan)
         spinnerTahun = view.findViewById(R.id.spinnerTahun)
         btnTarik = view.findViewById(R.id.btnTarik)
-        btnTarik.setOnClickListener {
-            val intent = Intent(requireContext(), TarikActivity::class.java)
-            //tambahkan value saldo ke intent
-            intent.putExtra("saldo", saldo)
-            startActivity(intent)
-        }
+
+
         //btn topup
         btnTopup = view.findViewById(R.id.btnTopup)
-        btnTopup.setOnClickListener {
-            val intent = Intent(requireContext(), TopupActivity::class.java)
-            //tambahkan value saldo ke intent
-            intent.putExtra("saldo", saldo)
-            startActivity(intent)
-        }
         // Set up the RecyclerView
         recyclerViewTransaksi.apply {
             setHasFixedSize(true)
@@ -179,6 +169,18 @@ class WalletFragment : Fragment() {
             override fun onNothingSelected(parent: AdapterView<*>) {
                 // Another interface callback
             }
+        }
+        btnTarik.setOnClickListener {
+            val intent = Intent(requireContext(), TarikActivity::class.java)
+            //tambahkan value saldo ke intent
+            intent.putExtra("saldo", saldo)
+            startActivity(intent)
+        }
+        btnTopup.setOnClickListener {
+            val intent = Intent(requireContext(), TopupActivity::class.java)
+            //tambahkan value saldo ke intent
+            intent.putExtra("saldo", saldo)
+            startActivity(intent)
         }
     }
     private fun readData(db: FirebaseFirestore, shimmerContainer: ShimmerFrameLayout,uid: String,tahun:String, bulan:String) {

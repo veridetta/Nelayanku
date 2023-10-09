@@ -34,8 +34,14 @@ import com.midtrans.sdk.uikit.api.model.SnapTransactionDetail
 import com.midtrans.sdk.uikit.external.UiKitApi
 import com.midtrans.sdk.uikit.internal.util.UiKitConstants
 import com.nelayanku.apps.R
+import com.nelayanku.apps.model.Wallet
 import com.nelayanku.apps.redirect.UserActivity
 import com.nelayanku.apps.tools.formatCurrency
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
 import java.time.LocalDateTime
 import java.util.UUID
 
@@ -61,12 +67,12 @@ class TopupActivity : AppCompatActivity(){
         val sal = intent.getStringExtra("saldo") ?: "0"
         saldo = sal.toInt()
         tvSaldo = findViewById(R.id.textViewSaldo)
-        tvSaldo.text = "Saldo : " + formatCurrency(saldo.toDouble())
-        tvSaldo.text = "Saldo : " + formatCurrency(saldo.toDouble())
 
+        tvSaldo.text = "Memuat data..."
         btnTopup = findViewById(R.id.btnTopup)
         editTextNominal = findViewById(R.id.editTextNominal)
         db = FirebaseFirestore.getInstance()
+        getSaldo(FirebaseAuth.getInstance().currentUser?.uid.toString())
         buildUiKit()
         btnTopup.setOnClickListener {
             nominal = editTextNominal.text.toString().toDouble()
@@ -145,8 +151,8 @@ class TopupActivity : AppCompatActivity(){
     private fun buildUiKit() {
         UiKitApi.Builder()
             .withContext(this.applicationContext)
-            .withMerchantUrl("http://midtrans.dikmatyasika.com/midtrans.php/")
-            .withMerchantClientKey("SB-Mid-client-KZ13jYwCXoOjYgCL")
+            .withMerchantUrl("https://midtrans.hazenpt.my.id/midtrans.php/")
+            .withMerchantClientKey("Mid-client-QllRZPIC0WIu9AiT")
             .enableLog(true)
             .withColorTheme(
                 com.midtrans.sdk.uikit.api.model.CustomColorTheme(
@@ -220,6 +226,48 @@ class TopupActivity : AppCompatActivity(){
             orderId = orderID,
             grossAmount = nominal //GlobalData.totalBayar.toDouble()
         )
+    }
+    fun getSaldo(uid: String){
+        GlobalScope.launch(Dispatchers.IO) {
+            try {
+                val result = db.collection("wallets").whereEqualTo("uid", uid)
+                    .get().await()
+                val products = mutableListOf<Wallet>()
+                var totalPemasukan = 0
+                var totalPengeluaran = 0
+                for (document in result) {
+                    val product = document.toObject(Wallet::class.java)
+                    //total pemasukan diambil dari nominal where jenisnya = pemasukan
+                    if (product.jenis == "pemasukan") {
+                        val pemasukan = product.nominal?.toInt()
+                        //if status selesai
+                        if (product.status == "Selesai") {
+                            totalPemasukan += pemasukan!!
+                        }
+
+                    }else {
+                        val pengeluaran = product.nominal?.toInt()
+                        //if status selsai
+                        if (product.status == "Selesai") {
+                            totalPengeluaran += pengeluaran!!
+                        }
+                    }
+                    //tambahkan documentid
+                    product.documentId = document.id
+                    products.add(product)
+                    Log.d("Wallet ", "Datanya : ${document.id} => ${document.data}")
+                }
+                val total = totalPemasukan - totalPengeluaran
+                saldo = total
+                withContext(Dispatchers.Main) {
+
+                    tvSaldo.text = formatCurrency(saldo.toDouble()) //ubah ke format rupiah
+                }
+
+            } catch (e: Exception) {
+                Log.w("Wallet ", "Error getting documents : $e")
+            }
+        }
     }
 
 }
